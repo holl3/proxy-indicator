@@ -50,9 +50,9 @@ import ConfigParser
 #from Crypto.Cipher import ARC4
 
 
-filenames = ["/etc/bash.bashrc", "/etc/environment"]
-filename2 = "/etc/apt/apt.conf"
-logs = "/var/log/proxychangerlog"
+filenames = ["/etc/bash.bashrc", "/etc/environment", "/home/holl3/.zshrc"]
+filename2 = "/etc/apt/apt.conf.d/95proxies"
+logs = "/var/log/proxychanger.log"
 
 
 class UProxy:
@@ -87,7 +87,7 @@ class UProxy:
 
     #Modify config files to set proxy enabled (insert proxy entries)
     def enable_proxy(self):
-        backup([filenames[0], filenames[1], filename2])
+        backup([filenames[0], filenames[1], filenames[2], filename2])
         self.flog.write("Files have been backed up in '~/.Ubuntu-Proxy/'  with .backup extension \n")
         clean(filename2, filenames)
         # self.fin()
@@ -165,6 +165,8 @@ def filewrite4(srv, port, name, pasw):
         fil = open(filenam, "a")
         for x in typ0:
             if (filenam.find("bash") != -1):
+                lin.append("export %s_proxy=\"%s://%s:%s@%s:%s\"\n" % (x, x, name, pasw, srv, port))
+            elif(filenam.find("zshrc") != -1):
                 lin.append("export %s_proxy=\"%s://%s:%s@%s:%s\"\n" % (x, x, name, pasw, srv, port))
             else:
                 lin.append("%s_proxy=\"%s://%s:%s@%s:%s\"\n" % (x, x, name, pasw, srv, port))

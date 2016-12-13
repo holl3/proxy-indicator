@@ -17,7 +17,9 @@ see https://code.google.com/p/ubproxy/
 """
 
 __author__ = 'Santiago Caamaño'
-
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('AppIndicator3', '0.1')
 from gi.repository import Gtk as gtk, GdkPixbuf, GLib
 
 try:
@@ -147,7 +149,7 @@ class IndicatorProxy(gtk.Window):
 
     #Check if proxy is set in system files
     def check_proxy_enabled(self):
-        filenames = ["/etc/bash.bashrc", "/etc/environment","/etc/apt/apt.conf"]
+        filenames = ["/etc/bash.bashrc", "/etc/environment","/etc/apt/apt.conf.d/95proxies"]
         proxy_enabled = False
         for file_name in filenames:
             try:

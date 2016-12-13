@@ -46,6 +46,7 @@ This project is roughly inspired in
 extract file and move `proxy-indicator` directory to `/usr/local/bin/`
 
 ```sh
+sudo aptitude install gksu
 sudo mkdir -p  /usr/local/bin/proxy-indicator/
 tar xvf proxy-indicator.tar.gz
 chmod +x proxy-indicator/run
