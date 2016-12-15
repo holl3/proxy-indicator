@@ -189,6 +189,13 @@ class IndicatorProxy(gtk.Window):
         # Enable proxy on system
         command = 'gksudo ./ubproxy enable '+self.config_file
         os.system(command)
+        host = 'http://proxy.system.local'
+        port = '80'
+        os.system('gsettings set org.gnome.system.proxy mode manual')
+        os.system('gsettings set org.gnome.system.proxy.http host ' + host)
+        os.system('gsettings set org.gnome.system.proxy.http port ' + port)
+        os.system('gsettings set org.gnome.system.proxy.https host ' + host)
+        os.system('gsettings set org.gnome.system.proxy.https port ' + port)
 
         #Show result message Dialog
         if self.check_proxy_enabled():
@@ -203,6 +210,7 @@ class IndicatorProxy(gtk.Window):
         # Disable proxy on system
         command = 'gksudo ./ubproxy disable '+self.config_file
         os.system(command)
+        os.system('gsettings set org.gnome.system.proxy mode none')
 
          #Show result message Dialog
         if not self.check_proxy_enabled():
