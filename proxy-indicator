@@ -39,8 +39,8 @@ terminal = 'gnome-terminal'
 app_name = 'Indicator Proxy'
 app_version = '0.3.1'
 app_website = 'http://scaamanho.github.io/proxy-indicator/'
-enabled_icon = os.path.abspath('proxy_on.png')
-disabled_icon = os.path.abspath('proxy_off.png')
+enabled_icon = os.path.abspath('images/proxy_on.png')
+disabled_icon = os.path.abspath('images/proxy_off.png')
 
 
 class IndicatorProxy(gtk.Window):
@@ -295,8 +295,8 @@ class IndicatorProxy(gtk.Window):
         about_dialog.set_authors(['Santiago Caamaño <https://github.com/scaamanho/>'])
         about_dialog.set_documenters(['Santiago Caamaño <https://github.com/scaamanho/>'])
         about_dialog.set_translator_credits('')
-        about_dialog.set_icon(GdkPixbuf.Pixbuf.new_from_file('icon.png'))
-        about_dialog.set_logo(GdkPixbuf.Pixbuf.new_from_file('logo.png'))
+        about_dialog.set_icon(GdkPixbuf.Pixbuf.new_from_file('images/icon.png'))
+        about_dialog.set_logo(GdkPixbuf.Pixbuf.new_from_file('images/logo.png'))
         about_dialog.set_program_name(app_name)
         return about_dialog
 
