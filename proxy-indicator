@@ -51,7 +51,8 @@ class IndicatorProxy(gtk.Window):
         gtk.Window.__init__(self, title='')
 
         # Create if not exist config file
-        self.check_config_file()
+        self.create_and_read_config_file()
+        self.filenames = ["/etc/bash.bashrc", "/etc/environment","/etc/apt/apt.conf.d/95proxies"]
 
         # Reference to about dialog
         self.about_dialog = None
@@ -149,9 +150,9 @@ class IndicatorProxy(gtk.Window):
 
     #Check if proxy is set in system files
     def check_proxy_enabled(self):
-        filenames = ["/etc/bash.bashrc", "/etc/environment","/etc/apt/apt.conf.d/95proxies"]
+        
         proxy_enabled = False
-        for file_name in filenames:
+        for file_name in self.filenames:
             try:
                 # If find it in one file its enought
                 file = open(file_name, 'r')
@@ -165,7 +166,7 @@ class IndicatorProxy(gtk.Window):
         return proxy_enabled
 
     #Check if exist config file and create if not exist
-    def check_config_file(self):
+    def create_and_read_config_file(self):
         directory = os.getenv("HOME")+'/.config/proxy-indicator'
         if not os.path.exists(directory):
             os.makedirs(directory)
