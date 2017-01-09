@@ -50,7 +50,7 @@ import ConfigParser
 #from Crypto.Cipher import ARC4
 
 
-filenames = ["/etc/bash.bashrc", "/etc/environment", "/home/holl3/.zshrc"]
+filenames = ["/etc/bash.bashrc", "/etc/environment"]
 filename2 = "/etc/apt/apt.conf.d/95proxies"
 logs = "/var/log/proxychanger.log"
 
@@ -87,7 +87,7 @@ class UProxy:
 
     #Modify config files to set proxy enabled (insert proxy entries)
     def enable_proxy(self):
-        backup([filenames[0], filenames[1], filenames[2], filename2])
+        backup([filenames[0], filenames[1], filename2])
         self.flog.write("Files have been backed up in '~/.Ubuntu-Proxy/'  with .backup extension \n")
         clean(filename2, filenames)
         # self.fin()

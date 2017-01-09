@@ -4,7 +4,7 @@ import os
 #from Crypto.Cipher import ARC4
 
 class ConfigWin():
-    def __init__(self):
+    def __init__(self, configFileName):
         # Init cypher
         #self.cypher = ARC4.new('01234567')
 
@@ -24,7 +24,7 @@ class ConfigWin():
         self.tf_pass = builder.get_object('tf_pass')
 
         #Read configuration
-        self.config_file = os.getenv("HOME")+'/.config/proxy-indicator/config.ini'
+        self.config_file = configFileName
         self.config = ConfigParser.RawConfigParser()
         self.config.read(self.config_file)
 

@@ -224,9 +224,9 @@ class IndicatorProxy(gtk.Window):
     def on_configure_activate(self, evt):
         print('configure proxy')
         if self.configWin is None:
-            self.configWin = ConfigWin()
+            self.configWin = ConfigWin(self.config_file)
         else:
-            self.configWin.__init__()
+            self.configWin.__init__(self.config_file)
         self.configWin.show()
 
     #update menu entries based in proxy state passed
